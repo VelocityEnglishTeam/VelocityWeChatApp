@@ -1,11 +1,28 @@
 {
   "pages": [
-    "src/pages/index/index"
+    "src/pages/index/index",
+    "src/pages/chengjidan/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextSyle": "black"
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTitleText": "迅达英语",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "src/pages/index/index",
+        "text": "首页",
+        "iconPath": "src/images/home-off.png",
+        "selectedIconPath": "src/images/home-on.png"
+      },
+      {
+        "pagePath": "src/pages/chengjidan/index",
+        "text": "成绩单分析",
+        "iconPath": "src/images/fenxi-off.png",
+        "selectedIconPath": "src/images/fenxi-on.png"
+      }
+    ]
   }
 }
