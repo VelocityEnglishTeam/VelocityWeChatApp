@@ -1,4 +1,4 @@
-// src/pages/chengjidan/index.js
+// src/pages/ScoreAnalysis/index.js
 Page({
 
   /**

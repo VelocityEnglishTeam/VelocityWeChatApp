@@ -1,7 +1,7 @@
 {
   "pages": [
     "src/pages/index/index",
-    "src/pages/chengjidan/index"
+    "src/pages/ScoreAnalysis/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,11 +18,12 @@
         "selectedIconPath": "src/images/home-on.png"
       },
       {
-        "pagePath": "src/pages/chengjidan/index",
+        "pagePath": "src/pages/ScoreAnalysis/index",
         "text": "成绩单分析",
         "iconPath": "src/images/fenxi-off.png",
         "selectedIconPath": "src/images/fenxi-on.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
