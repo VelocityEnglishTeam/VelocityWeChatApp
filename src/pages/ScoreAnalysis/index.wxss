@@ -1,26 +1,31 @@
 /* src/pages/SocreAnalysis/index.wxss */
 
-page {
+/* 使用中 */
+.score-body {
+  width: 100%;
+  margin: 20rpx 10rpx 30rpx 10rpx;
+  height: 100%;
   font-size: 30rpx;
+  display: flex;
 }
-.left {
+
+.inline {
+  /* display: inline-flex; */
+}
+
+/* .left {
   float: left;
 }
+
 .right {
   float: right;
-}
-.index_seach {
-  width: 100%;
-  margin-top: 20rpx;
-  height: auto;
-  margin-bottom: 30rpx;
-}
+} */
+
 /* 表单类通用 表单类通用 表单类通用*/
 .input_w {
   width: 100%;
   height: 90rpx;
   line-height: 90rpx;
-  /* background: lightblue; */
 }
 
 .input_w text {
@@ -41,8 +46,19 @@ page {
 .input input {
   margin-top: 10rpx;
   margin-left: 10rpx;
-  /* background: lightblue; */
 }
+
+.subClass_btn2 {
+  margin-top: 40rpx;
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background: #20bd03;
+}
+
+/* 未使用 */
 
 .textarea_w {
   display: block;
@@ -64,24 +80,10 @@ page {
   margin-top: 10rpx;
   border: 1px solid #ccc;
   padding: 8rpx;
-  /* background: lightblue; */
   overflow: hidden;
 }
 
 .textarea textarea {
   width: 100%;
   height: 130rpx;
-  /* background: lightcoral; */
-}
-
-/* 表单类通用 表单类通用 表单类通用*/
-
-.subClass_btn2 {
-  margin-top: 40rpx;
-  width: 80%;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 30rpx;
-  color: #fff;
-  background: #20bd03;
 }
