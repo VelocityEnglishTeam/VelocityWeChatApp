@@ -1,12 +1,8 @@
-// pages/biji/biji.js
-Page({
+// src/pages/SocreAnalysis/index
+// 成绩单分析首页
 
-  /**
-  * 页面的初始数据
-  */
-  data: {
-    
-  },
+Page({
+  data: {},
   // get_result: function(e){
   //   wx.navigateTo({
   //     url:'../chengjidan/fenxi'
@@ -14,32 +10,41 @@ Page({
   // },
 
   //确认按钮把数据上传后台
-  back_houtai: function (e) {
+  upload_score: function(e) {
     var that = this;
     var formData = e.detail.value;
-    var aim_score = e.detail.value.aim_score; //目标分数
-    var listening = e.detail.value.listening; //听力成绩
-    var speaking = e.detail.value.speaking; //口语成绩
-    var writing = e.detail.value.writing; //写作成绩
-    var reading = e.detail.value.reading;//阅读成绩
-    console.log(aim_score)
-    console.log(listening)
-    console.log(speaking)
-    console.log(writing)
-    console.log(reading)
-    wx.navigateTo({
-      url: '../ScoreAnalysis/result?listeningScore'+formData.listening
-    })
-    if (listening > 65){
-        KEYI
+    // var target = e.detail.value.target; //目标分数
+    // var listening = e.detail.value.listening; //听力成绩
+    // var speaking = e.detail.value.speaking; //口语成绩
+    // var writing = e.detail.value.writing; //写作成绩
+    // var reading = e.detail.value.reading; //阅读成绩
+
+    try {
+      wx.setStorage({
+        key: "score",
+        data: {
+          target: formData.target,
+          listening: formData.listening,
+          speaking: formData.speaking,
+          writing: formData.writing,
+          reading: formData.reading
+        }
+      });
+    } catch (e) {
+      console.log("setstoragesync fail");
     }
 
+    wx.navigateTo({
+      url: "../ScoreAnalysis/result"
+    });
+
+    if (listening > 65) {
+      KEYI;
+    }
   },
 
   /**
-  * 生命周期函数--监听页面加载
-  */
-  onLoad: function (options) {
-  },
-
-})
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {}
+});

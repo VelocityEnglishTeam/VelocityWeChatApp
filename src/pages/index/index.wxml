@@ -1,5 +1,4 @@
-<import src="../moban/moban_index.wxml"/>
-
-<view >
-    <template is="index_index_scroll_tmpl" data="{{...index_index_scroll_tmpl}}"/>
+<import src="../template/template.wxml" />
+<view>
+    <template is="swiper_scroll_tmpl" data="{{...swiper_scroll}}" />
 </view>

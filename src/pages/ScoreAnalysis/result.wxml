@@ -1,5 +1,5 @@
-<!--src/pages/chengjidan/fenxi.wxml-->
-<text>src/pages/chengjidan/fenxi.wxml</text>
+<!--src/pages/ScoreAnalysis/result.wxml-->
+<text>src/pages/ScoreAnalysis/result.wxml</text>
 <view>
-<text>听力成绩为：{{listening}}</text>
+<text>你的听力成绩为：{{listening}}</text>
 </view>

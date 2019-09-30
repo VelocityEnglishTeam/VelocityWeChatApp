@@ -1,27 +1,24 @@
-//index.js
-//获取应用实例
-const app = getApp()
+// src/pages/index/index
+// 小程序首页
+
+const app = getApp();
 
 Page({
   data: {
-    //向模板传入数据
+    // 向模板传入数据
     // 轮播
-    index_index_scroll_tmpl: {
+    swiper_scroll: {
       images: [
-        '../../images/2.jpg',
-        '../../images/1.jpg',
-        '../../images/3.jpg',
+        "../../images/2.jpg",
+        "../../images/1.jpg",
+        "../../images/3.jpg"
       ],
       indicatorDots: true,
       vertical: false,
       autoplay: true,
       interval: 3000,
-      duration: 1200
-    },
-  }, 
-  /**
-  * 生命周期函数--监听页面加载
-  */
-
-
-})
+      duration: 1200,
+      circular: true
+    }
+  }
+});
