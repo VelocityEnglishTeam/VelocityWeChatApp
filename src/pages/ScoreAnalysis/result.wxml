@@ -1,2 +1,5 @@
 <!--src/pages/chengjidan/fenxi.wxml-->
 <text>src/pages/chengjidan/fenxi.wxml</text>
+<view>
+<text>听力成绩为：{{listening}}</text>
+</view>

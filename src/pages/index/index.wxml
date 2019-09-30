@@ -1,2 +1,5 @@
-<!--src/pages/index/index.wxml-->
-<text>src/pages/index/index.wxml</text>
+<import src="../moban/moban_index.wxml"/>
+
+<view >
+    <template is="index_index_scroll_tmpl" data="{{...index_index_scroll_tmpl}}"/>
+</view>
