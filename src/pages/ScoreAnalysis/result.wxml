@@ -1,5 +1,5 @@
 <!--src/pages/ScoreAnalysis/result.wxml-->
-<!-- <view wx:if="{{difference>30}}">
+<view wx:if="{{difference>30}}">
 <text>因为PTE考试为交叉打分，你较低的口语成绩会对听力和阅读成绩产生较大的影响。</text>
 </view>
 
@@ -62,7 +62,7 @@
 
 <view wx:if="{{discourse<65}}">
 <text>Written Discourse成绩意味着你写作的质量，尤其是对于多种时态、逻辑连接词、句子结构的把控。大多数学生在该项上都有达到90分的能力，你的该项分数较低说明你没有使用模板，或者用了模板，但复制了太多原始文本中的内容并不断重复模板句，这些都会减少你的该项评分。</text>
-</view> -->
+</view>
 
 
 <view wx:if="{{fluency==10}}">
