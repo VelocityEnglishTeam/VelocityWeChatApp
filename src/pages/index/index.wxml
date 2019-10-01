@@ -1,3 +1,4 @@
+<!-- src/pages/index/index 小程序首页 -->
 <import src="../template/template.wxml" />
 <view>
     <template is="swiper_scroll_tmpl" data="{{...swiper_scroll}}" />

@@ -3,19 +3,35 @@
 
 Page({
   data: {
-    score: [
-      { name: "target", value: "Target Score", value_cn: "目标" },
-      { name: "overall", value: "Overall Score", value_cn: "总分" },
-      { name: "listening", value: "Listening", value_cn: "听力" },
-      { name: "speaking", value: "Speaking", value_cn: "口语" },
-      { name: "writing", value: "Writing", value_cn: "写作" },
-      { name: "reading", value: "Reading", value_cn: "阅读" },
-      { name: "grammar", value: "Grammar", value_cn: "语法" },
-      { name: "fluency", value: "Olal Fluency", value_cn: "流利" },
-      { name: "pronunciation", value: "Pronunciation", value_cn: "发音" },
-      { name: "spelling", value: "Spelling", value_cn: "拼写" },
-      { name: "vocabulary", value: "Vocabulary", value_cn: "单词" },
-      { name: "discourse", value: "Written Discourse", value_cn: "表达" }
+    target_score: [
+      { name: "target", value: "Target Score", value_cn: "目标", score: "" }
+    ],
+    overall_score: [
+      { name: "overall", value: "Overall Score", value_cn: "总分", score: "" }
+    ],
+    communicative_score: [
+      { name: "listening", value: "Listening", value_cn: "听力", score: "" },
+      { name: "speaking", value: "Speaking", value_cn: "口语", score: "" },
+      { name: "writing", value: "Writing", value_cn: "写作", score: "" },
+      { name: "reading", value: "Reading", value_cn: "阅读", score: "" }
+    ],
+    enabling_score: [
+      { name: "grammar", value: "Grammar", value_cn: "语法", score: "" },
+      { name: "fluency", value: "Olal Fluency", value_cn: "流利", score: "" },
+      {
+        name: "pronunciation",
+        value: "Pronunciation",
+        value_cn: "发音",
+        score: ""
+      },
+      { name: "spelling", value: "Spelling", value_cn: "拼写", score: "" },
+      { name: "vocabulary", value: "Vocabulary", value_cn: "单词", score: "" },
+      {
+        name: "discourse",
+        value: "Written Discourse",
+        value_cn: "表达",
+        score: ""
+      }
     ]
   },
 
@@ -28,6 +44,7 @@ Page({
       wx.setStorage({
         key: "score",
         data: {
+          overall: formData.overall,
           target: formData.target,
           listening: formData.listening,
           speaking: formData.speaking,
