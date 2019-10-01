@@ -1,39 +1,36 @@
 <!-- src/pages/ScoreAnalysis/index.wxml -->
-<view class="score-body">
+<view>
     <form bindsubmit="upload_score">
-        <view wx:for="{{score}}" class="">
-            <label>
-                <text>{{item.value}}</text>
-                <view>
-                    <input placeholder="79" type="number" maxlength="2" name='{{item.name}}'></input>
-                </view>
-            </label>
-        </view>
-        <!-- <view class='input_w professional'>
-            <text class='left'>Listening</text>
-            <view class='input left'>
-                <input placeholder='请输入听力成绩' cursor-spacing='20' name='listening'></input>
+        <wux-cell-group title="Target Score">
+            <view wx:for="{{target_score}}" wx:key="unique">
+                <wux-cell hover-class="none">
+                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
+                </wux-cell>
             </view>
-        </view> -->
-        <button class='subClass_btn2' formType="submit">Submit</button>
+        </wux-cell-group>
+        <wux-cell-group title="Overall Score">
+            <view wx:for="{{overall_score}}" wx:key="unique">
+                <wux-cell hover-class="none">
+                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
+                </wux-cell>
+            </view>
+        </wux-cell-group>
+        <wux-cell-group title="Communicative Skills">
+            <view wx:for="{{communicative_score}}" wx:key="unique">
+                <wux-cell hover-class="none">
+                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
+                </wux-cell>
+            </view>
+        </wux-cell-group>
+        <wux-cell-group title="Enabling Skills">
+            <view wx:for="{{enabling_score}}" wx:key="unique">
+                <wux-cell hover-class="none">
+                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
+                </wux-cell>
+            </view>
+        </wux-cell-group>
+        <view class="btn-area">
+            <button formType="submit" class="wux-button-balanced">Submit</button>
+        </view>
     </form>
 </view>
-<!--  -->
-<!-- <view class="page-body">
-    <view class="page-section">
-        <view class="weui-cells__title">可以自动聚焦的input</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
-                <input class="weui-input" auto-focus placeholder="将会获取焦点" />
-            </view>
-        </view>
-    </view>
-    <view class="page-section">
-        <view class="weui-cells__title">数字输入的input</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
-                <input class="weui-input" maxlength="2" type="number" placeholder="这是一个数字输入框,最大输入长度为2" />
-            </view>
-        </view>
-    </view>
-</view> -->

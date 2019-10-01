@@ -3,13 +3,17 @@
 
 Page({
   data: {
-    score: [
-      { name: "target", value: "Target Score", value_cn: "目标" },
-      { name: "overall", value: "Overall Score", value_cn: "总分" },
+    target_score: [{ name: "target", value: "Target Score", value_cn: "目标" }],
+    overall_score: [
+      { name: "overall", value: "Overall Score", value_cn: "总分" }
+    ],
+    communicative_score: [
       { name: "listening", value: "Listening", value_cn: "听力" },
       { name: "speaking", value: "Speaking", value_cn: "口语" },
       { name: "writing", value: "Writing", value_cn: "写作" },
-      { name: "reading", value: "Reading", value_cn: "阅读" },
+      { name: "reading", value: "Reading", value_cn: "阅读" }
+    ],
+    enabling_score: [
       { name: "grammar", value: "Grammar", value_cn: "语法" },
       { name: "fluency", value: "Olal Fluency", value_cn: "流利" },
       { name: "pronunciation", value: "Pronunciation", value_cn: "发音" },
@@ -28,6 +32,7 @@ Page({
       wx.setStorage({
         key: "score",
         data: {
+          overall: formData.overall,
           target: formData.target,
           listening: formData.listening,
           speaking: formData.speaking,
