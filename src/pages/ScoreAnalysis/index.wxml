@@ -1,35 +1,27 @@
 <!-- src/pages/ScoreAnalysis/index.wxml -->
 <view>
     <form bindsubmit="upload_score">
-        <wux-cell-group title="Target Score">
+        <i-panel title="Target Score">
             <view wx:for="{{target_score}}" wx:key="unique">
-                <wux-cell hover-class="none">
-                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
-                </wux-cell>
+                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
             </view>
-        </wux-cell-group>
-        <wux-cell-group title="Overall Score">
+        </i-panel>
+        <i-panel title="Overall Score">
             <view wx:for="{{overall_score}}" wx:key="unique">
-                <wux-cell hover-class="none">
-                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
-                </wux-cell>
+                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
             </view>
-        </wux-cell-group>
-        <wux-cell-group title="Communicative Skills">
+        </i-panel>
+        <i-panel title="Communicative Skills">
             <view wx:for="{{communicative_score}}" wx:key="unique">
-                <wux-cell hover-class="none">
-                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
-                </wux-cell>
+                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
             </view>
-        </wux-cell-group>
-        <wux-cell-group title="Enabling Skills">
+        </i-panel>
+        <i-panel title="Enabling Skills">
             <view wx:for="{{enabling_score}}" wx:key="unique">
-                <wux-cell hover-class="none">
-                    <wux-input label="{{item.value_cn}}" placeholder="79" type="number" name="{{item.name}}"></wux-input>
-                </wux-cell>
+                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
             </view>
-        </wux-cell-group>
-        <view class="btn-area">
+        </i-panel>
+        <view>
             <button formType="submit" class="wux-button-balanced">Submit</button>
         </view>
     </form>

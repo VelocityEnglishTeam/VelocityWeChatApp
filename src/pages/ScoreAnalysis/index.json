@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "wux-cell-group": "../../dist/cell-group/index",
-    "wux-cell": "../../dist/cell/index",
-    "wux-input": "../../dist/input/index"
+    "i-input": "../../dist/input/index",
+    "i-button": "../../dist/button/index",
+    "i-panel": "../../dist/panel/index"
   }
 }
