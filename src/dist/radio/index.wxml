@@ -1,3 +1,8 @@
-<wux-cell wux-class="{{ classes.cell }}" prefixCls="{{ cellPrefixCls }}" thumb="{{ thumb }}" title="{{ title }}" label="{{ label }}">
-    <wux-selectable slot="footer" wux-class="{{ classes.selectable }}" prefixCls="{{ selectablePrefixCls }}" type="radio" value="{{ value }}" checked="{{ inputChecked }}" color="{{ color }}" disabled="{{ disabled }}" controlled bind:change="radioChange" />
-</wux-cell>
+<view class="i-class i-radio" catchtap="radioChange">
+    <i-cell i-class="i-radio-cell">
+        <label>
+            <radio value="{{value}}" checked="{{checked}}" color="{{checked?color:''}}" disabled="{{disabled}}" class="i-radio-radio {{positionCls}}" />
+            <view class="i-radio-title">{{value}}</view>
+        </label>
+    </i-cell>
+</view>

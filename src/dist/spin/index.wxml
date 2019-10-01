@@ -1,14 +1,6 @@
-<view class="wux-class {{ classes.wrap }}">
-    <wux-animation-group wux-class="{{ classes.anim }}" in="{{ spinVisible }}" classNames="{{ classNames }}">
-        <view class="{{ classes.dots }}">
-            <view class="{{ classes.dot }}">dot</view>
-            <view class="{{ classes.dot }}">dot</view>
-            <view class="{{ classes.dot }}">dot</view>
-            <view class="{{ classes.dot }}">dot</view>
-        </view>
-        <view class="{{ classes.tip }}" wx:if="{{ tip }}">{{ tip }}</view>
-    </wux-animation-group>
-    <view class="{{ classes.container }}" wx:if="{{ nested }}">
-        <slot></slot>
-    </view>
+<view class="i-class i-spin i-spin-{{ size }} {{ fix ? 'i-spin-fix' : '' }} {{ custom ? 'i-spin-show-text' : '' }} {{ fullscreen ? 'i-spin-fullscreen' : '' }}">
+    <div class="i-spin-main">
+        <view class="i-spin-dot"></view>
+        <div class="i-spin-text"><slot></slot></div>
+    </div>
 </view>

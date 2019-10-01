@@ -1,83 +1,40 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
-
-baseComponent({
-    relations: {
-        '../sticky/index': {
-            type: 'parent',
-        },
+Component({
+    externalClasses: ['i-class'],
+    options: {
+        multipleSlots: true
     },
-    properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-sticky-item',
-        },
-        title: {
-            type: String,
-            value: '',
-        },
-        content: {
-            type: String,
-            value: '',
-        },
+    relations : {
+        '../sticky/index' : {
+            type : 'parent'
+        }
     },
-    data: {
-        isFixed: false,
-        index: 0,
-        top: 0,
-        height: 0,
-    },
-    computed: {
-        classes: ['prefixCls, isFixed', function(prefixCls, isFixed) {
-            const wrap = classNames(prefixCls, {
-                [`${prefixCls}--fixed`]: isFixed,
-            })
-            const hd = `${prefixCls}__hd`
-            const title = `${prefixCls}__title`
-            const bd = `${prefixCls}__bd`
-            const content = `${prefixCls}__content`
-
-            return {
-                wrap,
-                hd,
-                title,
-                bd,
-                content,
-            }
-        }],
+    data : {
+        top : 0,
+        height : 0,
+        isFixed : false,
+        index : -1,
     },
     methods: {
-        onScroll(scrollTop) {
-            const parent = this.getRelationNodes('../sticky/index')[0]
-            const { top, height, index } = this.data
-            const isFixed = scrollTop >= top && scrollTop < top + height
-
-            if (this.data.isFixed !== isFixed) {
-                this.setData({
-                    isFixed,
-                })
-
-                if (parent) {
-                    parent.triggerEvent(isFixed ? 'stick' : 'unstick', { index })
-                }
-            }
+        updateScrollTopChange(scrollTop){
+            const data = this.data;
+            const top = data.top;
+            const height = data.height;
+            this.setData({
+                isFixed : ( scrollTop >= top && scrollTop < top + height ) ? true : false
+            })
         },
-    	updated(index) {
-            const className = `.${this.data.prefixCls}`
-    		wx
-                .createSelectorQuery()
-                .in(this)
-                .select(className)
-                .boundingClientRect((rect) => {
-                    if (!rect) return
-
-                    this.setData({
-                        top: rect.top,
-                        height: rect.height,
-                        index,
-                    })
-                })
-                .exec()
-    	},
-    },
+        updateDataChange(index) {
+            const className = '.i-sticky-item';
+            const query = wx.createSelectorQuery().in(this);
+            query.select( className ).boundingClientRect((res)=>{
+                    if( res ){
+                        this.setData({
+                            top : res.top,
+                            height : res.height,
+                            index : index
+                        })
+                    }
+            }).exec()
+        }
+    }
 })

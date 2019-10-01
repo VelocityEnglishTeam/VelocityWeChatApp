@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listening: null
   },
 
   /**
@@ -15,9 +14,49 @@ Page({
   onLoad: function(options) {
     try {
       var score = wx.getStorageSync("score");
+      var listening=score.listening
+      var speaking=score.speaking
+      var writing=score.writing
+      var reading = score.reading
+      var difference = score.target - score.speaking
+      var adjust_score = Math.round(difference / 3)
+      if (adjust_score < 0) adjust_score = 0
+      listening = parseInt(adjust_score) + parseInt(listening)
+      reading = parseInt(adjust_score) + parseInt(reading)
+      var arr = [listening, speaking, writing, reading]
+      var min = arr[0]
+      var min_id=0
+      var min2_id=0
+      var count=1
+      var cha = 99
+      for(var i=1;i<arr.length;i++){
+        if(min>arr[i]){
+          min = arr[i];
+          min_id = i
+        } 
+      }
+      for(var i=0;i<arr.length;i++){
+        if(arr[i]-min<6&&i!=min_id){
+          count+=1
+          if (arr[i] - min < cha){
+            cha = arr[i] - min
+            min2_id=i
+          }
+        }
+      }
       if (score) {
         // Do something with return value
-        console.log("score:", score.listening);
+
+        console.log("min:", min);
+        console.log("min_id:", min_id);
+        console.log("min2_id:", min2_id);
+        console.log("grammar:", grammar);
+        console.log("fluency:", fluency);
+        console.log("pronunciation:", pronunciation);
+        console.log("spelling:", spelling);
+        console.log("vocabulary:", vocabulary);
+        console.log("discourse:", discourse);
+
       }
     } catch (e) {
       // Do something when catch error
@@ -26,7 +65,21 @@ Page({
     // console.log("options", options);
     var that = this;
     that.setData({
-      listening: score.listening
+      listening: listening,
+      speaking: speaking,
+      writing: writing,
+      reading: reading,
+      count:count,
+      min:min,
+      difference:difference,
+      min_id:min_id,
+      min2_id:min2_id,
+      grammar: score.grammar,
+      fluency: score.fluency,
+      pronunciation: score.pronunciation,
+      spelling: score.spelling,
+      vocabulary: score.vocabulary,
+      discourse: score.discourse
     });
   },
 

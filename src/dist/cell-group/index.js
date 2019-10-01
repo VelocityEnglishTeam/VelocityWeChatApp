@@ -1,68 +1,33 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
+Component({
+    externalClasses: ['i-class'],
 
-baseComponent({
-    options: {
-        multipleSlots: false,
-    },
     relations: {
         '../cell/index': {
-            type: 'descendant',
-            observer() {
-                this.debounce(this.updateIsLastElement)
+            type: 'child',
+            linked () {
+                this._updateIsLastCell();
             },
-        },
+            linkChanged () {
+                this._updateIsLastCell();
+            },
+            unlinked () {
+                this._updateIsLastCell();
+            }
+        }
     },
-    properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-cell-group',
-        },
-        title: {
-            type: String,
-            value: '',
-        },
-        label: {
-            type: String,
-            value: '',
-        },
-    },
-    computed: {
-        classes: ['prefixCls', function(prefixCls) {
-            const wrap = classNames(prefixCls)
-            const hd = `${prefixCls}__hd`
-            const bd = `${prefixCls}__bd`
-            const ft = `${prefixCls}__ft`
 
-            return {
-                wrap,
-                hd,
-                bd,
-                ft,
-            }
-        }],
-    },
     methods: {
-        updateIsLastElement() {
-            const elements = this.getRelationNodes('../cell/index')
-            if (elements.length > 0) {
-                const lastIndex = elements.length - 1
-                elements.forEach((element, index) => {
-                    element.updateIsLastElement(index === lastIndex)
-                })
+        _updateIsLastCell() {
+            let cells = this.getRelationNodes('../cell/index');
+            const len = cells.length;
+
+            if (len > 0) {
+                let lastIndex = len - 1;
+
+                cells.forEach((cell, index) => {
+                    cell.updateIsLastCell(index === lastIndex);
+                });
             }
-        },
-        getBoundingClientRect(callback) {
-            const className = `.${this.data.prefixCls}`
-            wx
-                .createSelectorQuery()
-                .in(this)
-                .select(className)
-                .boundingClientRect((rect) => {
-                    if (!rect) return
-                    callback.call(this, rect.height)
-                })
-                .exec()
-        },
-    },
-})
+        }
+    }
+});

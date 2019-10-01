@@ -1,132 +1,56 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
+Component({
+    externalClasses: ['i-class'],
 
-const getDefaultActiveKey = (elements) => {
-    const target = elements.filter((element) => !element.data.disabled)[0]
-    if (target) {
-        return target.data.key
-    }
-    return null
-}
-
-const activeKeyIsValid = (elements, key) => {
-    return elements.map((element) => element.data.key).includes(key)
-}
-
-const getActiveKey = (elements, activeKey) => {
-    const defaultActiveKey = getDefaultActiveKey(elements)
-    return !activeKey ? defaultActiveKey : !activeKeyIsValid(elements, activeKey) ? defaultActiveKey : activeKey
-}
-
-baseComponent({
     relations: {
         '../tab/index': {
             type: 'child',
-            observer() {
-                this.debounce(this.updated)
+            linked () {
+                this.changeCurrent();
             },
-        },
+            linkChanged () {
+                this.changeCurrent();
+            },
+            unlinked () {
+                this.changeCurrent();
+            }
+        }
     },
+
     properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-tabs',
-        },
-        defaultCurrent: {
-            type: String,
-            value: '',
-        },
         current: {
             type: String,
             value: '',
-            observer(newVal) {
-                if (this.data.controlled) {
-                    this.updated(newVal)
-                }
-            },
+            observer: 'changeCurrent'
+        },
+        color: {
+            type: String,
+            value: ''
         },
         scroll: {
             type: Boolean,
-            value: false,
+            value: false
         },
-        controlled: {
+        fixed: {
             type: Boolean,
-            value: false,
-        },
-        theme: {
-            type: String,
-            value: 'balanced',
-        },
-        direction: {
-            type: String,
-            value: 'horizontal',
-        },
+            value: false
+        }
     },
-    data: {
-        activeKey: '',
-        keys: [],
-    },
-    computed: {
-        classes: ['prefixCls, direction, scroll', function(prefixCls, direction, scroll) {
-            const wrap = classNames(prefixCls, {
-                [`${prefixCls}--${direction}`]: direction,
-                [`${prefixCls}--scroll`]: scroll,
-            })
 
-            return {
-                wrap,
-            }
-        }],
-    },
     methods: {
-        updated(value = this.data.activeKey) {
-            const elements = this.getRelationNodes('../tab/index')
-            const activeKey = getActiveKey(elements, value)
+        changeCurrent (val = this.data.current) {
+            let items = this.getRelationNodes('../tab/index');
+            const len = items.length;
 
-            if (this.data.activeKey !== activeKey) {
-                this.setData({ activeKey })
-            }
-
-            this.changeCurrent(activeKey, elements)
-        },
-        changeCurrent(activeKey, elements) {
-            const { scroll, theme, direction } = this.data
-
-            if (elements.length > 0) {
-                elements.forEach((element) => {
-                    element.changeCurrent({
-                        current: element.data.key === activeKey,
-                        scroll,
-                        theme,
-                        direction,
-                    })
-                })
-            }
-
-            if (this.data.keys.length !== elements.length) {
-                this.setData({
-                    keys: elements.map((element) => element.data)
-                })
+            if (len > 0) {
+                items.forEach(item => {
+                    item.changeScroll(this.data.scroll);
+                    item.changeCurrent(item.data.key === val);
+                    item.changeCurrentColor(this.data.color);
+                });
             }
         },
-        emitEvent(key) {
-            this.triggerEvent('change', {
-                key,
-                keys: this.data.keys,
-            })
-        },
-        setActiveKey(activeKey) {
-            if (!this.data.controlled) {
-                this.updated(activeKey)
-            }
-
-            this.emitEvent(activeKey)
-        },
-    },
-    ready() {
-        const { defaultCurrent, current, controlled } = this.data
-        const activeKey = controlled ? current : defaultCurrent
-
-        this.updated(activeKey)
-    },
-})
+        emitEvent (key) {
+            this.triggerEvent('change', { key });
+        }
+    }
+});

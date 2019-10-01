@@ -1,71 +1,29 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
+Component({
+    externalClasses: ['i-class', 'i-class-alone'],
 
-baseComponent({
-    externalClasses: ['wux-class-badge'],
     properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-badge',
-        },
         count: {
             type: Number,
             value: 0,
-            observer: 'updated',
+            observer: 'finalCount'
         },
         overflowCount: {
             type: Number,
-            value: 99,
+            value: 99
         },
         dot: {
             type: Boolean,
-            value: false,
-        },
-        showZero: {
-            type: Boolean,
-            value: false,
-        },
-        status: {
-            type: String,
-            value: '',
-        },
-        text: {
-            type: String,
-            value: '',
+            value: false
         },
     },
     data: {
-        finalCount: 0,
-    },
-    computed: {
-        classes: ['prefixCls, status', function(prefixCls, st) {
-            const wrap = classNames(prefixCls)
-            const status = `${prefixCls}__status`
-            const statusDot = classNames(`${prefixCls}__status-dot`, {
-                [`${prefixCls}__status-dot--${st}`]: st,
-            })
-            const statusText = `${prefixCls}__status-text`
-            const dot = `${prefixCls}__dot`
-            const count = `${prefixCls}__count`
-
-            return {
-                wrap,
-                status,
-                statusDot,
-                statusText,
-                dot,
-                count,
-            }
-        }],
+        finalCount: 0
     },
     methods: {
-        updated(count = this.data.count) {
-            const { overflowCount } = this.data
-            const finalCount = count >= overflowCount ? `${overflowCount}+` : count
-
+        finalCount() {
             this.setData({
-                finalCount,
-            })
+                finalCount: parseInt(this.data.count) >= parseInt(this.data.overflowCount) ? `${this.data.overflowCount}+` : this.data.count
+            });
         },
-    },
-})
+    }
+});

@@ -1,39 +1,25 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
+Component({
+    externalClasses: ['i-class'],
 
-baseComponent({
     properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-button',
-        },
+        // default, primary, ghost, info, success, warning, error
         type: {
             type: String,
-            value: 'stable',
+            value: '',
         },
-        clear: {
+        inline: {
             type: Boolean,
-            value: false,
+            value: false
         },
-        block: {
-            type: Boolean,
-            value: false,
-        },
-        full: {
-            type: Boolean,
-            value: false,
-        },
-        outline: {
-            type: Boolean,
-            value: false,
-        },
-        bordered: {
-            type: Boolean,
-            value: true,
-        },
+        // default, large, small
         size: {
             type: String,
-            value: 'default',
+            value: '',
+        },
+        // circle, square
+        shape: {
+            type: String,
+            value: 'square'
         },
         disabled: {
             type: Boolean,
@@ -43,99 +29,52 @@ baseComponent({
             type: Boolean,
             value: false,
         },
-        formType: {
-            type: String,
-            value: '',
-        },
-        openType: {
-            type: String,
-            value: '',
-        },
-        hoverClass: {
-            type: String,
-            value: 'default',
-        },
-        hoverStopPropagation: {
+        long: {
             type: Boolean,
-            value: false,
+            value: false
         },
+        openType: String,
+        appParameter: String,
+        hoverStopPropagation: Boolean,
         hoverStartTime: {
             type: Number,
-            value: 20,
+            value: 20
         },
         hoverStayTime: {
             type: Number,
-            value: 70,
+            value: 70
         },
         lang: {
             type: String,
-            value: 'en',
+            value: 'en'
         },
         sessionFrom: {
             type: String,
-            value: '',
+            value: ''
         },
-        sendMessageTitle: {
-            type: String,
-            value: '',
-        },
-        sendMessagePath: {
-            type: String,
-            value: '',
-        },
-        sendMessageImg: {
-            type: String,
-            value: '',
-        },
-        showMessageCard: {
-            type: Boolean,
-            value: false,
-        },
-        appParameter: {
-            type: String,
-            value: '',
-        },
+        sendMessageTitle: String,
+        sendMessagePath: String,
+        sendMessageImg: String,
+        showMessageCard: Boolean
     },
-    computed: {
-        classes: ['prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, disabled', function(prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, disabled) {
-            const wrap = classNames(prefixCls, {
-                [`${prefixCls}--${type}`]: type,
-                [`${prefixCls}--${size}`]: size,
-                [`${prefixCls}--block`]: block,
-                [`${prefixCls}--full`]: full,
-                [`${prefixCls}--clear`]: clear,
-                [`${prefixCls}--outline`]: outline,
-                [`${prefixCls}--bordered`]: bordered,
-                [`${prefixCls}--disabled`]: disabled,
-            })
-            const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
 
-            return {
-                wrap,
-                hover,
-            }
-        }],
-    },
     methods: {
-        onTap() {
-            if (!this.data.disabled && !this.data.loading) {
-                this.triggerEvent('click')
-            }
+        handleTap () {
+            if (this.data.disabled) return false;
+
+            this.triggerEvent('click');
         },
-        bindgetuserinfo(e) {
-            this.triggerEvent('getuserinfo', e.detail)
+        bindgetuserinfo({ detail = {} } = {}) {
+            this.triggerEvent('getuserinfo', detail);
         },
-        bindcontact(e) {
-            this.triggerEvent('contact', e.detail)
+        bindcontact({ detail = {} } = {}) {
+            this.triggerEvent('contact', detail);
         },
-        bindgetphonenumber(e) {
-            this.triggerEvent('getphonenumber', e.detail)
+        bindgetphonenumber({ detail = {} } = {}) {
+            this.triggerEvent('getphonenumber', detail);
         },
-        bindopensetting(e) {
-            this.triggerEvent('opensetting', e.detail)
-        },
-        onError(e) {
-            this.triggerEvent('error', e.detail)
-        },
-    },
-})
+        binderror({ detail = {} } = {}) {
+            this.triggerEvent('error', detail);
+        }
+    }
+});

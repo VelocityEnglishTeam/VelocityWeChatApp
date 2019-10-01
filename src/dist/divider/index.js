@@ -1,42 +1,25 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
-
-baseComponent({
-	properties: {
-        prefixCls: {
+Component({
+    externalClasses: ['i-class'],
+    properties: {
+        content: {
             type: String,
-            value: 'wux-divider',
+            value: ''
         },
-        position: {
+        height : {
+            type: Number,
+            value: 48
+        },
+        color : {
+            type : String,
+            value : '#80848f'
+        },
+        lineColor : {
+            type : String,
+            value : '#e9eaec'
+        },
+        size : {
             type: String,
-            value: 'center',
-        },
-        dashed: {
-            type: Boolean,
-            value: false,
-        },
-        text: {
-            type: String,
-            value: '',
-        },
-        showText: {
-            type: Boolean,
-            value: true,
-        },
-    },
-    computed: {
-        classes: ['prefixCls, dashed, showText, position', function(prefixCls, dashed, showText, position) {
-            const wrap = classNames(prefixCls, {
-                [`${prefixCls}--dashed`]: dashed,
-                [`${prefixCls}--text`]: showText,
-                [`${prefixCls}--text-${position}`]: showText && position,
-            })
-            const text = `${prefixCls}__text`
-
-            return {
-                wrap,
-                text,
-            }
-        }],
-    },
-})
+            value: 12
+        }
+    }
+});

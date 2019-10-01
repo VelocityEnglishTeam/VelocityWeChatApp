@@ -1,48 +1,49 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
-
-baseComponent({
-    relations: {
-        '../step/index': {
-            type: 'child',
-            observer() {
-                this.debounce(this.updateCurrent)
-            },
+Component({
+    externalClasses: ['i-class'],
+    properties : {
+        current : {
+            type : Number,
+            value : -1,
+            observer : '_updateDataChange'
         },
+        status : {
+            type : String,
+            //wait、process、finish、error
+            value : ''
+        },
+        direction : {
+            type : String,
+            //value has horizontal or vertical 
+            value : 'horizontal'
+        } 
     },
-    properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-steps',
-        },
-        current: {
-            type: Number,
-            value: 0,
-            observer: 'updateCurrent',
-        },
-        // status: {
-        //     type: String,
-        //     value: '',
-        // },
-        direction: {
-            type: String,
-            value: 'horizontal',
-        },
+    relations : {
+        '../step/index' : {
+            type : 'child',
+            linked(){
+                this._updateDataChange();
+            },
+            linkChanged () {
+                this._updateDataChange();
+            },
+            unlinked () {
+                this._updateDataChange();
+            }
+        }
     },
     methods: {
-        updateCurrent() {
-            const elements = this.getRelationNodes('../step/index')
-            const { current, direction } = this.data
-
-            if (elements.length > 0) {
-                elements.forEach((element, index) => {
-                    element.updateCurrent({
-                        length: elements.length,
-                        index,
-                        current,
-                        direction,
-                    })
-                })
+        _updateDataChange() {
+            let steps = this.getRelationNodes('../step/index');
+            const len = steps.length;
+            if (len > 0) {
+                steps.forEach((step, index) => {
+                    step.updateDataChange({
+                        len : len,
+                        index : index,
+                        current : this.data.current,
+                        direction : this.data.direction
+                    });
+                });
             }
         }
     }

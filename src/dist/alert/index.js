@@ -1,82 +1,37 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
-
-baseComponent({
+Component({
+    externalClasses: ['i-class'],
+    options: {
+        multipleSlots: true
+    },
     properties: {
-        prefixCls: {
+        //info, success, warning, error
+        type: {
             type: String,
-            value: 'wux-alert',
-        },
-        classNames: {
-            type: null,
-            value: 'wux-animate--fadeIn',
-        },
-        theme: {
-            type: String,
-            value: 'balanced',
-        },
-        thumb: {
-            type: String,
-            value: '',
-        },
-        title: {
-            type: String,
-            value: '',
-        },
-        label: {
-            type: String,
-            value: '',
+            value: 'info'
         },
         closable: {
             type: Boolean,
-            value: false,
+            value: false
+        },
+        showIcon: {
+            type: Boolean,
+            default: false
+        },
+        desc: {
+            type: Boolean,
+            default: false
         },
     },
     data: {
-        visible: true,
-    },
-    computed: {
-        classes: ['prefixCls, theme', function(prefixCls, theme) {
-            const wrap = classNames(prefixCls, {
-                [`${prefixCls}--${theme}`]: theme,
-            })
-            const hd = `${prefixCls}__hd`
-            const thumb = `${prefixCls}__thumb`
-            const bd = `${prefixCls}__bd`
-            const text = `${prefixCls}__text`
-            const desc = `${prefixCls}__desc`
-            const ft = `${prefixCls}__ft`
-            const closable = `${prefixCls}__closable`
-
-            return {
-                wrap,
-                hd,
-                thumb,
-                bd,
-                text,
-                desc,
-                ft,
-                closable,
-            }
-        }],
+        closed: false
     },
     methods: {
-        /**
-         * 关闭时触发的回调函数
-         */
-        onClose() {
-            if (this.data.closable) {
-                this.setData({
-                    visible: false
-                })
-            }
-            this.triggerEvent('click')
+        handleTap() {
+            this.setData({
+                closed: !this.data.closed,
+            });
+            this.triggerEvent('close');
         },
-        /**
-         * 点击事件
-         */
-        onClick() {
-            this.triggerEvent('click')
-        },
-    },
-})
+
+    }
+});

@@ -1,93 +1,56 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
+const prefixCls = 'i-radio';
 
-baseComponent({
+Component({
+    externalClasses: ['i-class'],
     relations: {
         '../radio-group/index': {
-            type: 'parent',
-        },
+            type: 'parent'
+        }
     },
     properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-radio',
-        },
-        cellPrefixCls: {
-            type: String,
-            value: 'wux-cell',
-        },
-        selectablePrefixCls: {
-            type: String,
-            value: 'wux-selectable',
-        },
-        thumb: {
-            type: String,
-            value: '',
-        },
-        title: {
-            type: String,
-            value: '',
-        },
-        label: {
-            type: String,
-            value: '',
-        },
         value: {
             type: String,
-            value: '',
+            value: ''
         },
         checked: {
             type: Boolean,
-            value: false,
-            observer(newVal) {
-                this.setData({
-                    inputChecked: newVal,
-                })
-            },
+            value: false
         },
         disabled: {
             type: Boolean,
-            value: false,
+            value: false
         },
         color: {
             type: String,
-            value: 'balanced',
+            value: '#2d8cf0'
         },
+        position: {
+            type: String,
+            value: 'left', //left right
+            observer: 'setPosition'
+        }
     },
     data: {
-        index: 0,
-        inputChecked: false,
+        checked: true,
+        positionCls: `${prefixCls}-radio-left`,
     },
-    computed: {
-        classes: ['prefixCls', function(prefixCls) {
-            const cell = classNames(prefixCls)
-            const selectable = `${prefixCls}__selectable`
-
-            return {
-                cell,
-                selectable,
-            }
-        }],
+    attached() {
+        this.setPosition();
     },
     methods: {
-        radioChange(e) {
-            const { value, index, disabled } = this.data
-            const parent = this.getRelationNodes('../radio-group/index')[0]
-            const item = {
-                checked: e.detail.checked,
-                value,
-                index,
-            }
-
-            if (disabled) return
-
-            parent ? parent.onChange(item) : this.triggerEvent('change', item)
+        changeCurrent(current) {
+            this.setData({ checked: current });
         },
-        changeValue(inputChecked = false, index = 0) {
+        radioChange() {
+            if (this.data.disabled) return;
+            const item = { current: !this.data.checked, value: this.data.value };
+            const parent = this.getRelationNodes('../radio-group/index')[0];
+            parent ? parent.emitEvent(item) : this.triggerEvent('change', item);
+        },
+        setPosition() {
             this.setData({
-                inputChecked,
-                index,
-            })
-        },
-    },
-})
+                positionCls: this.data.position.indexOf('left') !== -1 ? `${prefixCls}-radio-left` : `${prefixCls}-radio-right`,
+            });
+        }
+    }
+});

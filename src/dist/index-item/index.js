@@ -1,57 +1,32 @@
-import baseComponent from '../helpers/baseComponent'
-import classNames from '../helpers/classNames'
-
-baseComponent({
-    relations: {
-        '../index/index': {
-            type: 'parent',
-        },
+Component({
+    externalClasses: ['i-class'],
+    properties : {
+        name : {
+            type : String,
+            value : ''
+        }
     },
-    properties: {
-        prefixCls: {
-            type: String,
-            value: 'wux-index-item',
-        },
-        name: {
-            type: String,
-            value: '',
-        },
+    relations : {
+        '../index/index' : {
+            type : 'parent'
+        }
     },
-    data: {
-        index: 0,
-        top: 0,
-        height: 0,
-    },
-    computed: {
-        classes: ['prefixCls', function(prefixCls) {
-            const wrap = classNames(prefixCls)
-            const hd = `${prefixCls}__hd`
-            const bd = `${prefixCls}__bd`
-
-            return {
-                wrap,
-                hd,
-                bd,
-            }
-        }],
+    data : {
+        top : 0,
+        height : 0,
+        currentName : ''
     },
     methods: {
-    	updated(index) {
-            const className = `.${this.data.prefixCls}`
-            wx
-                .createSelectorQuery()
-                .in(this)
-                .select(className)
-                .boundingClientRect((rect) => {
-                    if (!rect) return
-
+        updateDataChange() {
+            const className = '.i-index-item';
+            const query = wx.createSelectorQuery().in(this);
+            query.select( className ).boundingClientRect((res)=>{
                     this.setData({
-                        top: rect.top,
-                        height: rect.height,
-                        index,
+                        top : res.top,
+                        height : res.height,
+                        currentName : this.data.name
                     })
-                })
-                .exec()
-        },
-    },
+            }).exec()
+        }
+    }
 })
