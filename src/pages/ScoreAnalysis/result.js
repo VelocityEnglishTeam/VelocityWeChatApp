@@ -18,7 +18,8 @@ Page({
       var speaking=score.speaking
       var writing=score.writing
       var reading = score.reading
-      var adjust_score = Math.round((score.target - score.speaking) / 3)
+      var difference = score.target - score.speaking
+      var adjust_score = Math.round(difference / 3)
       if (adjust_score < 0) adjust_score = 0
       listening = parseInt(adjust_score) + parseInt(listening)
       reading = parseInt(adjust_score) + parseInt(reading)
@@ -49,7 +50,12 @@ Page({
         console.log("min:", min);
         console.log("min_id:", min_id);
         console.log("min2_id:", min2_id);
-        console.log("count:", count);
+        console.log("grammar:", grammar);
+        console.log("fluency:", fluency);
+        console.log("pronunciation:", pronunciation);
+        console.log("spelling:", spelling);
+        console.log("vocabulary:", vocabulary);
+        console.log("discourse:", discourse);
 
       }
     } catch (e) {
@@ -63,7 +69,17 @@ Page({
       speaking: speaking,
       writing: writing,
       reading: reading,
-      min:min
+      count:count,
+      min:min,
+      difference:difference,
+      min_id:min_id,
+      min2_id:min2_id,
+      grammar: score.grammar,
+      fluency: score.fluency,
+      pronunciation: score.pronunciation,
+      spelling: score.spelling,
+      vocabulary: score.vocabulary,
+      discourse: score.discourse
     });
   },
 
