@@ -50,7 +50,7 @@ Page({
       var this_score = parseInt(formData[item], 10);
       console.log(this_score);
 
-      if (!this_score) {
+      if (!this_score || this_score < 10 || this_score > 90) {
         wx.showToast({
           title: "请填写完整有效数据",
           icon: "none",
