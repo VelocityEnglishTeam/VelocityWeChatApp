@@ -1,11 +1,11 @@
 <!-- src/pages/ScoreAnalysis/result.wxml -->
 <view class="caption-wrap">
-    <view>
-        <text class="caption-title">标题航。</text>
-    </view>
     <i-collapse name="{{name}}">
-        <i-collapse-item title="听说读写成绩分析" name="name1">
+        <i-collapse-item title="听说读写成绩" name="name1">
             <view slot="content">
+                <view wx:if="{{count==0}}">
+                    <text>恭喜你！你的各项成绩已经到达目标分数！</text>
+                </view>
                 <view wx:if="{{difference>30}}">
                     <text>因为PTE考试为交叉打分，你较低的口语成绩会对听力和阅读成绩产生较大的影响。</text>
                 </view>
