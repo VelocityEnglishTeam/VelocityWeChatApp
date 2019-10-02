@@ -45,6 +45,21 @@ Page({
     var formData = e.detail.value;
     console.log(e.detail.value);
 
+    //验证form表单是否填写完整
+    for (var item in formData) {
+      var this_score = parseInt(formData[item], 10);
+      console.log(this_score);
+
+      if (!this_score) {
+        wx.showToast({
+          title: "请填写完整有效数据",
+          icon: "none",
+          duration: 1000
+        });
+        return;
+      }
+    }
+
     // 把成绩数据存储在本地缓存中，后期可以改成存在服务器数据库中，把往期的考试成绩也保存下来，加入考试日期信息
     try {
       wx.setStorage({
@@ -66,9 +81,10 @@ Page({
       });
     } catch (e) {
       console.log("setstoragesync fail");
-      // 这里要改进以下，存储失败的话就跳出提示框重新尝试之类的
+      // 这里要改进一下，存储失败的话就跳出提示框重新尝试之类的
     }
 
+    // 跳转到结果页面
     wx.navigateTo({
       url: "../ScoreAnalysis/result"
     });
