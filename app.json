@@ -1,8 +1,8 @@
 {
   "pages": [
+    "src/pages/ScoreAnalysis/result",
     "src/pages/ScoreAnalysis/index",
-    "src/pages/index/index",
-    "src/pages/ScoreAnalysis/result"
+    "src/pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

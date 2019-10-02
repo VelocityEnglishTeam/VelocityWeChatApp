@@ -20,10 +20,10 @@ Page({
         id: 3,
         name: "Communicative Skills",
         each_score: [
-          { id: 31, name_cn: "阅读", name: "reading" },
-          { id: 32, name_cn: "听力", name: "listening" },
-          { id: 33, name_cn: "口语", name: "speaking" },
-          { id: 34, name_cn: "写作", name: "writing" }
+          { id: 31, name_cn: "听力", name: "listening" },
+          { id: 32, name_cn: "口语", name: "speaking" },
+          { id: 33, name_cn: "写作", name: "writing" },
+          { id: 34, name_cn: "阅读", name: "reading" }
         ]
       },
       {
@@ -43,12 +43,12 @@ Page({
 
   formSubmit: function(e) {
     var formData = e.detail.value;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
 
     //验证form表单是否填写完整
     for (var item in formData) {
       var this_score = parseInt(formData[item], 10);
-      console.log(this_score);
+      // console.log(this_score);
 
       if (!this_score || this_score < 10 || this_score > 90) {
         wx.showToast({

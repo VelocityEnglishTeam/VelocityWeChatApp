@@ -4,10 +4,10 @@
         <view wx:for="{{scores}}" wx:key="id">
             <i-panel title="{{item.name}}">
                 <view wx:for="{{item.each_score}}" wx:for-item="each" wx:key="id">
-                    <i-input name="{{ each.name }}" title="{{each.name_cn}}" type="number" maxlength="2" placeholder="79" />
+                    <i-input name="{{ each.name }}" title="{{each.name_cn}}" type="number" maxlength="2" placeholder="请输入该项成绩" />
                 </view>
             </i-panel>
         </view>
-        <button formType="submit" class="wux-button-balanced">Submit</button>
+        <button formType="submit" class="wux-button-balanced">提交</button>
     </form>
 </view>

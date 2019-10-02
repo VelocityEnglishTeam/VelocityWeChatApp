@@ -5,7 +5,7 @@
   background-color: #33cd5f !important;
   color: #fff !important;
   margin-top: 40rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
   width: 80%;
   height: 80rpx;
   line-height: 80rpx;
