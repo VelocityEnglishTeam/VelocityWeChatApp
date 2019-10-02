@@ -53,16 +53,22 @@ Page({
       if (score) {
         // Do something with return value
 
+        console.log("listening:", listening);
+        console.log("speaking:", speaking);
+        console.log("writing:", writing);
+        console.log("reading:", reading);
         console.log("min:", min);
         console.log("count:", count);
         console.log("min_id:", min_id);
         console.log("min2_id:", min2_id);
         console.log("grammar:", grammar);
+        console.log("grammar1:", score.grammar);
         console.log("fluency:", fluency);
         console.log("pronunciation:", pronunciation);
         console.log("spelling:", spelling);
         console.log("vocabulary:", vocabulary);
         console.log("discourse:", discourse)
+        console.log("target:", score.target);
 
       }
     } catch (e) {
@@ -81,7 +87,7 @@ Page({
       difference:difference,
       min_id:min_id,
       min2_id:min2_id,
-      grammar: grammar,
+      grammar: score.grammar,
       fluency: fluency,
       pronunciation: pronunciation,
       spelling: spelling,
