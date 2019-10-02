@@ -18,6 +18,12 @@ Page({
       var speaking=score.speaking
       var writing=score.writing
       var reading = score.reading
+      var grammar = score.grammar
+      var fluency = score.fluency
+      var pronunciation = score.pronunciation
+      var spelling = score.spelling
+      var vocabulary = score.vocabulary
+      var discourse = score.discourse
       var difference = score.target - score.speaking
       var adjust_score = Math.round(difference / 3)
       if (adjust_score < 0) adjust_score = 0
@@ -48,6 +54,7 @@ Page({
         // Do something with return value
 
         console.log("min:", min);
+        console.log("count:", count);
         console.log("min_id:", min_id);
         console.log("min2_id:", min2_id);
         console.log("grammar:", grammar);
@@ -55,7 +62,7 @@ Page({
         console.log("pronunciation:", pronunciation);
         console.log("spelling:", spelling);
         console.log("vocabulary:", vocabulary);
-        console.log("discourse:", discourse);
+        console.log("discourse:", discourse)
 
       }
     } catch (e) {
@@ -74,14 +81,16 @@ Page({
       difference:difference,
       min_id:min_id,
       min2_id:min2_id,
-      grammar: score.grammar,
-      fluency: score.fluency,
-      pronunciation: score.pronunciation,
-      spelling: score.spelling,
-      vocabulary: score.vocabulary,
-      discourse: score.discourse
+      grammar: grammar,
+      fluency: fluency,
+      pronunciation: pronunciation,
+      spelling: spelling,
+      vocabulary: vocabulary,
+      discourse: discourse
     });
   },
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
