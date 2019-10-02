@@ -1,8 +1,5 @@
 <!-- src/pages/ScoreAnalysis/result.wxml -->
 <view class="caption-wrap">
-    <view>
-        <text class="caption-title">标题航。</text>
-    </view>
     <i-collapse name="{{name}}">
         <i-collapse-item title="听说读写成绩分析" name="name1">
             <view slot="content">

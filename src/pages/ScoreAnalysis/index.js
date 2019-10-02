@@ -21,9 +21,9 @@ Page({
         name: "Communicative Skills",
         each_score: [
           { id: 31, name_cn: "听力", name: "listening" },
-          { id: 32, name_cn: "口语", name: "speaking" },
-          { id: 33, name_cn: "写作", name: "writing" },
-          { id: 34, name_cn: "阅读", name: "reading" }
+          { id: 32, name_cn: "阅读", name: "reading" },
+          { id: 33, name_cn: "口语", name: "speaking" },
+          { id: 34, name_cn: "写作", name: "writing" }
         ]
       },
       {
