@@ -1,28 +1,13 @@
 <!-- src/pages/ScoreAnalysis/index.wxml -->
 <view>
-    <form bindsubmit="upload_score">
-        <i-panel title="Target Score">
-            <view wx:for="{{target_score}}" wx:key="unique">
-                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
-            </view>
-        </i-panel>
-        <i-panel title="Overall Score">
-            <view wx:for="{{overall_score}}" wx:key="unique">
-                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
-            </view>
-        </i-panel>
-        <i-panel title="Communicative Skills">
-            <view wx:for="{{communicative_score}}" wx:key="unique">
-                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
-            </view>
-        </i-panel>
-        <i-panel title="Enabling Skills">
-            <view wx:for="{{enabling_score}}" wx:key="unique">
-                <i-input value="{{ item.score }}" title="{{item.value_cn}}" type="number" maxlength="2" placeholder="79" />
-            </view>
-        </i-panel>
-        <view>
-            <button formType="submit" class="wux-button-balanced">Submit</button>
+    <form bindsubmit="formSubmit">
+        <view wx:for="{{scores}}" wx:key="id">
+            <i-panel title="{{item.name}}">
+                <view wx:for="{{item.each_score}}" wx:for-item="each" wx:key="id">
+                    <i-input name="{{ each.name }}" title="{{each.name_cn}}" type="number" maxlength="2" placeholder="79" />
+                </view>
+            </i-panel>
         </view>
+        <button formType="submit" class="wux-button-balanced">Submit</button>
     </form>
 </view>

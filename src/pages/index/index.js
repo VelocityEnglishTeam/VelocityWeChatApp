@@ -1,5 +1,4 @@
-// src/pages/index/index
-// 小程序首页
+// src/pages/index/index 小程序首页
 
 const app = getApp();
 
