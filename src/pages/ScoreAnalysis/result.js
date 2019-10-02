@@ -33,7 +33,7 @@ Page({
       var min = arr[0]
       var min_id=0
       var min2_id=0
-      var count=1
+      var count=0
       var cha = 99
       for(var i=1;i<arr.length;i++){
         if(min>arr[i]){
@@ -42,9 +42,9 @@ Page({
         } 
       }
       for(var i=0;i<arr.length;i++){
-        if(arr[i]-min<6&&i!=min_id){
+        if(arr[i]-min<6&&arr[i]<score.target){
           count+=1
-          if (arr[i] - min < cha){
+          if (arr[i] - min < cha&&i!=min_id){
             cha = arr[i] - min
             min2_id=i
           }
