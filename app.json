@@ -1,7 +1,7 @@
 {
   "pages": [
-    "src/pages/ScoreAnalysis/index",
     "src/pages/ScoreAnalysis/result",
+    "src/pages/ScoreAnalysis/index",
     "src/pages/index/index"
   ],
   "window": {
